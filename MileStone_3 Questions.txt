@@ -1,0 +1,375 @@
+1. Encoding Three Strings: Anand was assigned the task of coming up with an encoding mechanism for any given three strings. He has come up with the below plan
+
+STEP ONE: Given any three strings, break each string into 3 parts each,
+For Example- If three strings are as below -
+input1="John"
+input2="Johny"
+input3="Janardhan"
+
+"John" should be split into "J","oh","n" as the FRONT, MIDDLE and END parts respectively.
+"Johny" should be split into "Jo","h","ny" as the FRONT, MIDDLE and END parts respectively.
+"Janardhan" should be split into "Jan","ard","han" as the FRONT, MIDDLE and END parts respectively.
+i.e. if the no of characters in the string are in the multiples of 3, then each split part will contain equal no of characters. as seen in the example of "Janardhan".
+If the no. of characters in the string are NOT in multiples of 3, then the middle part will get the extra character, as seen in the example of "John".
+If the no. of characters in the string are NOT in multiples of 3, and if there are two characters more than multiple of 3, then the FRONT and END parts will get one extra character each, as seen in the example of "Johny"
+
+STEP TWO: Concatenate(join) the FRONT, MIDDLE and END parts of the strings as per the below specified concatenation-rule to form three output strings.
+Output1=FRONT part of input1+MIDDLE part of input2+END part of input3
+Output2=MIDDLE part of input1+END part of input2+FRONT part of input3
+Output3=END part of input1+FRONT part of input2+MIDDLE part of input3
+For Example, for the above specified example input strings,
+Output1="J"+"h"+"han"="Jhhan"
+Output2="oh"+"ny"+"Jan"="ohnyJan"
+Output3="n"+"Jo"+"ard"="nJoard"
+
+STEP THREE: Process the resulting output strings based on the output Processing rule.
+After the above two steps, we will now have three output strings. Further processing is required only for the third output string as per below rule-"Toggle the case of each character in the string", i.e. in the third output string, all lower-case characters should be made upper-case and vice versa.
+For Example, for the above example strings, Output3 is "nJoard", so after applying the toggle rule, Output3 should become "NjOARD".
+
+Final result- The three output strings after applying the above three steps is the final result. i.e. for the above example.
+Output1="Jhhan"
+Output2="ohnyJan"
+Output3="NjOARD"
+
+Anand approaches you to help him write a program that would do the above mentioned processing on any given three strings and generate the resulting three output strings.
+The given functions three parameters, input1,input2,input3 represent the three given input strings and return a "Result" object/struct with the three output strings.
+=======================================================================================================================================================================
+
+2. TRANSFORM CODE
+
+Given an integer array input1[], function transformCodes returns a String array by following the below steps:
+Step A) For each number in the array, do the following and produce a string equivalent:
+Let "answer" be an empty string.
+Let 'n' be the current element from the array.
+
+Step A1) Check whether the length of n is 6. if so, concatnate "C" to answer, Else concatenate "W" to answer.
+Step A2) Check whether n satifies any of the following four conditions:
+if n is 0, then concatenate alphabets "Z" to answer,
+if n is 1, then concatenate alphabets "O" to answer, 
+if n is a Prime number, concatenate alphabet "P" to answer, 
+if n is not a Prime number, concatenate alphabet "N" to answer.
+Step A3) Find the sum of all the individual digits in "n", till the sum becomes a "single digit"
+Concatenate that single digit sum to the answer.
+Step A4) If n is "even number, find (n/2) and concat it to the answer.
+Else find (n-1)/2 and concat it to the answer.
+Step B) Now we need to accumulate all the answers from step 4 in one String Array and return the same.
+Assumptions:
+1) All the numbers in the input1 array will be >=2.
+2) input1 array will have minimum one element in it.
+3) Output array size should be equal to input array size.
+4) input and output are case sensitive.
+
+Note:
+1) Prime number series is 2,3,5,7,11,13,etc.
+2) 0 and 1 are neither prime nor composite.
+
+Function Prototype: String[] transformCodes(int[] input1)
+Sample Input/Output-1:
+input1[]={12}
+output[]={"WN36"}
+Explanation: Lets consider the first number from the input1 array.
+	Step A1: Initially answer="" and n=12. Length of n is not 6. So, answer="W",
+	Step A2: 12 is not a prime number. So, concatenate "N" to the answer. Now answer="WN"
+	Step A3: Lets find the sum of digits till it becomes a single digit.
+	Step A4: n=12 is an even number. so n/2=6. Concatenate this value to answer.
+		Now answer="WN36"
+	Finally the resulting string array is ["WN36"]. We need to return this array.
+
+Sample Input/Output-2: 
+input1[]={123456,1234567}
+output[]={"CN361728","WN1617288"}
+
+Explanation: Lets consider the first number from the input1 array.
+
+	Step A1: Initially answer="" and n=123456. Length of n is 6. So, answer="C",
+	Step A2: n is not a prime number. So, concatenate "N" to the answer. Now answer="CN"
+	Step A3: Lets find the sum of digits till it becomes a single digit.
+		1+2+3+4+5+6=21 Which is a two digit number. So, let us find the sum of the digit in 21.
+	Step A4: n=123456 is an even number. so n/2=61728. Concatenate this value to answer.
+		Answer for the first number is "CN361728".
+Lets consider the second number from the input1 array.
+
+	Step A1: Initially answer="" and n=1234567. Length of n is 7. So, answer="W",
+	Step A2: n is not a prime number. So, concatenate "N" to the answer. Now answer="WN"
+	Step A3: Lets find the sum of digits till it becomes a single digit.
+		1+2+3+4+5+6+7=28 Which is a two digit number. So, let us find the sum of the digit in 28.
+	Step A4: n=1234567 is an odd number. so (n-1)/2=617283. Concatenate this value to answer.
+		Answer for the second number is "WN1617283".
+Finally, We need to accumulate result for each of the input number. Hence, the resulting string array is {"CN361728","WN1617283"}. We need to return this array.
+
+=======================================================================================================================================================================
+
+3. Place the Alphabets
+
+Given an integer array input1 with N non-repeating elements, generate and return a character array as per the requirement:
+1. Size of the character array should be same as that of input1,
+2. In the character array,
+	alphabet 'a' will be placed in the position of smallest element of input1.
+	alphabet 'b' will be placed in the position of second smallest element of input1
+	alphabet 'c' will be placed in the position of third smallest element of input1 and so on..
+Example-1
+
+input1={10,5,70,1}
+output={c,b,d,a}
+
+Explanation:
+	1 is the smallest element in the input1, it is in index 3, hence 'a' is placed in index position 3
+	5 is the second smallest element in the input1, it is in index 1, hence 'b' is placed in index position 1
+	10 is the third smallest element in the input1, it is in index 0, hence 'c' is placed in index position 0
+	70 is the fourth smallest element in the input1, it in index 2, hence 'd' is placed in index position 2
+
+Example - 2
+
+input1={4,5,-2,8,99,67}
+output={b,c,a,d,f,e}
+
+Explanation:
+	-2 is the smallest element in input1, it is in index2, hence 'a' is placed in index position 2
+	4 is the second smallest element in input1, it is in index 0, hence 'b' is placed in index position 0
+	5 is the third smallest element in input1, it is in index 1, hence 'c' is placed in index position 1
+	8 is the fourth smallest element in input1, it is in index 3, hence 'd' is placed in index position 3
+	67 is the fifth smallest element in input1, it is in index 5, hence 'e' is placed in index position 5
+	99 is the sixth smallest element in input1, it is in index 4, hence 'f' is placed in index position 4.
+
+
+=======================================================================================================================================================================
+
+4. User ID Generation: Joseph's team has assigned the task of creating user-ids for all participants of an online gaming competition. Joseph has designed a process for generating the user-id using the participant's First_name, Last_name, PIN code and a number N. The process defined by joseph is as below-
+
+Step1- Compare the length of First_name and Last_name of the participant. The one that is shorter will be called "Smaller Name" and the one that is longer will be called the "Longer Name". If both First_name and Last_name are of equal length, then the name that appears earlier in alphabetical order will be called "Smaller Name" and the name that appears later in the alphabetical order will be called the "Longer Name".
+
+Step2- The User-id should be generated as below-
+First letter of the smaller name + Entire word of the longer name + Digit at position N in the PIN when traversing the PIN from left to right + Digit at position N in the PIN when traversing the PIN from right to left.
+
+Step3- Toggle the alphabets of the user-id generated in step-2. I.e. upper-case alphabets should become lower-case and lower-case alphabets should become upper-case.
+
+Let us see a few examples.
+
+Example-1 - If th participant's details are as below-
+First_Name = Rajiv
+Last_Name = Roy
+PIN = 560037
+N = 6
+Step1- Length of the Last_Name is less than the length of First_Name. so the smaller name is "ROY" and the longer name is "Rajiv"
+Step2- The user-id will be = First Letter of the longer name + Entire word of the smaller name + Digit at position N in the PIN When traversing from RIGHT to LEFT + Digit at position N in the PIN when traversing from LEFT to RIGHT.
+=First letter of "Rajiv" + Entire word of "Roy" + 6th Digit of PIN from left + 6tg Digit of PIN from right
+=R+Roy+7+5
+Therefore, user-id = RRoy75
+Step3- Toggle the alphabets in the user-id. So, user-id=rrOY75
+
+Example-2 -If the participants details are as below-
+First_Name = Manoj
+Last_Name = Kumar
+PIN = 561327
+N =2
+Step1- Length of the First_Name is equal to the Length of the Last_Name. Alphabettically, 'Kumar' appears earlier than 'Manoj' (by comparing alphabetic positions of 'K' and 'M') so the smaller name is "Kumar" and the Longer name as "Manoj"
+Step2- The User-id will be = First Letter of the longer name +  Entire word of the smaller name + Digit at position N in the PIN when traversing the PIN from right to left
+=First Letter of "Manoj" + Entire word of "Kumar" + 2nd Digit of PIN from left + 2nd Digit of PIN from right.
+=M+kumar+6+2
+Therefore, user-id=MKumar62
+Step3- Toggle the alphabets in the user-id. So, user-id=mKUMAR62
+
+Example3- If the participants details are as below-
+First_Name=Kumud
+Last_Name=Kumar
+PIN=561327
+N=2
+
+Step1- Length of the First_Name is equal to the Length of the Last_Name.
+Alphabetically, "Kumar" appears earlier than "Kumud" (by comparing alphabetical position of Kuma and Kumu) so the smaller name is "Kumar" and the longer name is "Kumud"
+
+Step2- The user-id will be = First Letter of the longer name + Entire word of the smaller name + Digit at position N  in the PIN when traversing the PIN from left to right + digit at position N in the PIN when traversing the PIN from right  to left.
+=First Letter of "Kumud' + Entire word in "Kumar" + 2nd Digit of PIN from left and 2nd digit of PIN from right.
+=K+Kumar+6+2
+Therefore, user-id=KKumar62
+Step3- Toggle the alphabets in the user-id. So, user-id = kkUMAR62
+
+You are part of Joseph's team and he has asked you to write a program(method to generate the participants user-id using the above rules.
+
+The name of the function is useridGeneration and it takes four input parameters.
+where, 
+input1 is the First_Name
+input2 is the Last_Name
+input3 is the PIN
+input4 is the number N
+
+The function should do the processing as per the rules explained above and  should return the generated user-id.
+
+Assumptions- For convenience of this assessment questions. Let us assume that the value of N(input4) will always be less than or equal to the number of digits in the PIN.
+
+=======================================================================================================================================================================
+
+5. Toggle the String
+
+Anju and Aman are close friends. There are playing a game on toggling of strings. Anju has given certain instructions to Aman to toggle a String. Help Aman to find the correct output.
+
+Given a String input1, based on input2 return the output as follows:
+
+Case1: If input2 is 0, extract and toggle the character at even indexes and return the concatenated output.
+
+Case2: If input2 is 1, extract and toggle the character at odd indexes and return the concatenate output.
+
+Case3: If input2 is 2, reverse the String and return the toggled output.
+
+Example1:
+input1: Wipro
+input2: 0
+output:wPO
+Explanation: W, p and o are at even indexes. After toggling, the values are w,P and O. Hence, the concatenated output is wPO.
+
+Example2:
+input1:TechnolOgY
+input2:1
+output:EHOoy
+Explanation: e,h,o,O and Y are at odd indexes. After toggling, the values are E, H, O, o and y. Hence, the concatenated output is EHOoy
+
+Example3: 
+input1: CHEnnAi
+input2:2
+output: laNNehc
+Explanation: Input String is reversed and all the characters are toggled.
+
+Note: Input String will be a single word containing only alphabets
+
+=======================================================================================================================================================================
+
+6. String Reverse Words and Case
+sentence) and generates a new String (modified sentence) by reversing the words in the original String, maintaining the words position. 
+In addition, the function should be able to control the reversing of the case(uppercase and lowercase) based on a case_option parameter, as follows -
+
+If case_option = 0, Normal reversal of words, i.e., If the original sentence is "Wipro TechNologies BangaLore", the new reversed sentence should be "orpiW seigoloNhceT eroLagnaB".
+
+If case_option = 1, Reversal of words with retaining position's case. i.e. If the original sentence is "Wipro TechNologies BangaLore" the new reversed sentence should be "Orpiw SeigOlohcet ErolaGnab".
+
+Note that positions 1,7,11,20 and 25 in the original string are uppercase W,T,N,B and L.
+
+Similarly, positions 1,7,11,20 and 25 in the new string are uppercase O, S, O, E and G.
+
+Prototype: String reverseWordsAndCase(String input1, int input2)
+
+Note: 
+1. Only space characters should be treated as the word seperator. i.e., "Hello World" should be treated as two seperate words "Hello" and "World". However, "Hello World", "Hello;World", "Hello-World" or "Hello/World" should be considered as a single word.
+
+2. Non-alphabetic characters in the string should not be subjected to case changes. For example, if case_option = 1 and the original sentence is "Wipro TechNologies, Bangalore" the new reversed sentence should be "Orpiw, selGolonhceT Erolagnab". Note that comma has been treated as part of the word "Technologies," and when comma had to take the position of uppercase T it remained as a comma and uppercase T look the position of comma. However, the words "Wipro and Bangalore" have changed to "Orpiw" and "Erolagnab".
+
+3. Kindly ensure that no extra(additional) space characters are embedded within the resultant reversed String.
+
+Examples:
+
+S. No.		input1							input2			output
+1		Wipro Technologies Bangalore				0			orpiW seigolonhceT erolagnaB
+2		Wipro Technologies, Bangalore				0			orpiW ,seigolonhceT erolagnaB
+3		Wipro Technologies Bangalore				1			Orpiw Seigolonhcet Erolangnab
+4		Wipro Technologies, Bangalore				1			Orpiw ,seigolonhcet Erolangnab
+
+
+=======================================================================================================================================================================
+
+7. Fix the Formula
+
+Kely has been tricked by her brother to answer a question with a number. She is preplexed. Her is the question "Fo=23the3*like2+" It took time for her to understand. Now she wants to automate it with a program so that any time her brother comes with such tricky String she could answer with lesser efforts.
+
+Here is what we have to do, seperate the math operators (+,*,+) and digits. 
+Like in the above string you can see the operators(+,*,+) and digits (2,3,3,2).
+Rest all the characters are ignored.
+
+Now arrange the digits and operators in the order of the appearance to get the correct result.
+2+3*3+2 to be solved as
+(2+3)=5
+Then,(5*3)=15
+Then, (15+2)=17
+So for the given string Fo+23the3*like2+ final answer is 17
+
+Help Kely by writing a program to solve the above given problem.
+Prototype: public int fixTheFormula(String input1)
+
+Assumptions
+	1. Numbers present in the String are always considered as single digits (0-9)
+	2. Only operators used in the String are (+,-,*,/)
+	3. Always we will have length+1 numbers to operators(in the above example 3 operators and 4 numbers).
+
+Sample Input/Output-1:
+input1=we8+you2-7to/*32
+output=2
+Explanation: Here the operators are [+,-,/,*] and the numbers are [8,2,7,3,2]
+Thus we would be getiing 8+2 =>10-=>3/3=>1*2=>2
+Final answer is  2.
+
+Sample Input/Output-2:
+input1=i*-t5s-t8h1e4birds
+output=35
+Explanation Here the operators are [*,-,-] and the numbers are [5,8,1,4]
+Thus we would be getting 5*8=>40-1=>39-4=>35
+Final answer is 35.
+
+=======================================================================================================================================================================
+
+8. User ID Generation: Joseph's team has assigned the task of creating user-ids for all participants of an online gaming competition. Joseph has designed a process for generating the user-id using the participant's First_name, Last_name, PIN code and a number N. The process defined by joseph is as below-
+
+Example-1 - If th participant's details are as below-
+First_Name = Rajiv
+Last_Name = Roy
+PIN = 560037
+N = 6
+Step1- Length of the Last_Name is less than the length of First_Name. so the smaller name is "ROY" and the longer name is "Rajiv"
+Step2- The user-id will be = First Letter of the smaller name + Entire word in the longer name + Digit at position N in the PIN when traversing the PIN from left to right + Digit at position N in the PIN when traversing the PIN from right to left
+=First letter of "Roy" + Entire word of "Rajiv" + 6th Digit of PIN from left + 6tg Digit of PIN from right
+=R+Rajiv+7+5
+Therefore, user-id = RRajiv75
+Step3- Toggle the alphabets in the user-id. So, user-id=rrAJIV75
+
+Example-2 -If the participants details are as below-
+First_Name = Manoj
+Last_Name = Kumar
+PIN = 561327
+N =2
+Step1- Length of the First_Name is equal to the Length of the Last_Name. Alphabettically, 'Kumar' appears earlier than 'Manoj' (by comparing alphabetic positions of 'K' and 'M') so the smaller name is "Kumar" and the Longer name as "Manoj"
+Step2- The User-id will be = First Letter of the smaller name +  Entire word in the longer name + Digit ar position N in the PIN when traversing the PIN from left to right + Digit at position N in the PIN when traversing the PIN from right to left
+
+Therefore, user-id=KManoj62
+Step3- Toggle the alphabets in the user-id. So, user-id=kmANOJ62.
+
+You are part of Joseph's team and he has asked you to write a program(method to generate the participants user-id using the above rules.
+
+The name of the function is useridGeneration and it takes four input parameters.
+where, 
+input1 is the First_Name
+input2 is the Last_Name
+input3 is the PIN
+input4 is the number N
+
+The function should do the processing as per the rules explained above and  should return the generated user-id.
+
+Assumptions- For convenience of this assessment questions. Let us assume that the value of N(input4) will always be less than or equal to the number of digits in the PIN.
+
+====================================================================================================================================================================
+
+9. First_Name = Rajiv
+Last_Name = Roy
+PIN = 560037
+Stepl - Length of Last_Name is less than the Length of First_Name, so the
+Smaller Name is "Roy" and the Longer Name is "Rajiv"
+Step2 - The user-id Will be = Last Letter of the smaller name + Entire word In t]
+longer name + Digit at position N jn the PIN when traversing the PIN from left
+rjght + Digit at position N In the PIN when traversing the PIN from rtght to left
+= Last Letter of 'Roy" + Entire word in "Rajjv" + 6th Digit of PIN from left + 6th
+Digit of PIN from right
+y RajiV + 7 5
+ThetF:fore, user-Id = yRa)jv75
+Step3 Toggle the alphabets jn the user-id So, user-Id YrAJlV7
+
+====================================================================================================================================================================
+
+10. Example-1 - If th participant's details are as below-
+First_Name = Rajiv
+Last_Name = Roy
+PIN = 560037
+N = 6
+Step1- Length of the Last_Name is less than the length of First_Name. so the smaller name is "ROY" and the longer name is "Rajiv"
+Step2- The user-id will be = Last Letter of the longer name + Entire word of the smaller name + Digit at position N in the PIN when traversing from LEFT to RIGHT + Digit at position N in the PIN When traversing from RIGHT to LEFT.
+=Last letter of "Rajiv" + Entire word of "Roy" + 6th Digit of PIN from left + 6tg Digit of PIN from right
+=v+Roy+7+5
+Therefore, user-id = vRoy75
+Step3- Toggle the alphabets in the user-id. So, user-id=VrOY75.
+
+====================================================================================================================================================================
