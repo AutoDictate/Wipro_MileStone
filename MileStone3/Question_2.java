@@ -21,7 +21,7 @@ public class Question_2 {
         String[] answer = new String[input1.length];
         for (int i = 0; i < input1.length; i++) {
             int num = input1[i];
-            int len = (int)Math.log10(num)+1;
+            int len = String.valueOf(num).length();
             StringBuilder sb = new StringBuilder();
             //Step 1
             if(len==6){
