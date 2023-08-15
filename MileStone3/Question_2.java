@@ -34,10 +34,10 @@ public class Question_2 {
             if(num==0){
                 sb.append('Z');
             }
-            if(num==1){
+            else if(num==1){
                 sb.append('O');
             }
-            if(isPrime(num)){
+            else if(isPrime(num)){
                 sb.append('P');
             }else {
                 sb.append('N');
