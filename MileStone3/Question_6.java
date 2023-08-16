@@ -44,21 +44,19 @@ public class Question_6 {
 
         String[] a1 = input1.split(" ");
         String s1="";
-        if(input2==0)
-        {
-            for (int i = 0; i < a1.length; i++) {
-                StringBuilder sb = new StringBuilder(a1[i].toLowerCase());
-                sb.reverse();
-                s1+= sb+" ";
-            }
+        for (int i = 0; i < a1.length; i++) {
+            StringBuilder sb = new StringBuilder(a1[i]).reverse();
+            s1+= sb+" ";
         }
         if (input2==1)
         {
-            for (int i = 0; i < a1.length; i++) {
-                StringBuilder sb = new StringBuilder(a1[i].toLowerCase());
-                sb.reverse();
-                String temp = sb.substring(0,1).toUpperCase()+sb.substring(1);
-                s1+=temp+" ";
+            String sb = s1.toLowerCase().trim();
+            s1="";
+            for (int i = 0; i < sb.length(); i++) {
+                char ch = input1.charAt(i);
+                char co = sb.charAt(i);
+                if(Character.isUpperCase(ch)){s1+=String.valueOf(co).toUpperCase();}
+                else {s1+=co;}
             }
         }
         return s1.trim();
