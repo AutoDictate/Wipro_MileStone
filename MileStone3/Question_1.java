@@ -20,6 +20,8 @@ public class Question_1 {
 
         String[] ans = {a[0]+b[1]+c[2],a[1]+b[2]+c[0],Char(a[2]+b[0]+c[1])};
         return Arrays.toString(ans);
+
+    //  return new Result(ans[0],ans[1],ans[2]);
     }
 
     public static String[] Three(String s){
