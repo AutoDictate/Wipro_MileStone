@@ -45,48 +45,36 @@ public class Question_5 {
         // Code Starts from Here//
 
         String s1="";
-        if(input2==0)
-        {
-
-            for (int i = 0; i < input1.length(); i++) {
-                char ch = input1.charAt(i);
-                if(i%2==0) {
-                    if(ch>='a' && ch<='z'){
-                        s1+=String.valueOf(ch).toUpperCase();
-                    }
-                    if(ch>='A' && ch<='Z'){
-                        s1+=String.valueOf(ch).toLowerCase();
-                    }
+        String s2="";
+        for (int i = 0; i < input1.length(); i++) {
+            char ch = input1.charAt(i);
+            if(ch>='a'&&ch<='z'){
+                s1+=String.valueOf(ch).toUpperCase();
+            }else {
+                s1+=String.valueOf(ch).toLowerCase();
+            }
+        }
+        if(input2==0) {
+            for (int i = 0; i < s1.length(); i++) {
+                if(i%2==0){
+                    s2+=s1.charAt(i);
                 }
             }
         }
         if(input2==1)
         {
-
-            for (int i = 0; i < input1.length(); i++) {
-                char ch = input1.charAt(i);
-                if(i%2!=0) {
-                    if(ch>='a' && ch<='z'){
-                        s1+=String.valueOf(ch).toUpperCase();
-                    }
-                    if(ch>='A' && ch<='Z'){
-                        s1+=String.valueOf(ch).toLowerCase();
-                    }
+            for (int i = 0; i < s1.length(); i++) {
+                if(i%2!=0){
+                    s2+=s1.charAt(i);
                 }
             }
         }
         if(input2==2)
         {
            for (int i = input1.length()-1; i >=0; i--) {
-                char ch = input1.charAt(i);
-                if(ch>='a' && ch<='z'){
-                    s1+=String.valueOf(ch).toUpperCase();
-                }
-                if(ch>='A' && ch<='Z'){
-                    s1+=String.valueOf(ch).toLowerCase();
-                }
+                s2+=s1.charAt(i);
             }
         }
-        return s1;
+        return s2;
     }
 }
